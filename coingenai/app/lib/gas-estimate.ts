@@ -1,9 +1,9 @@
 import { mint } from "@zoralabs/protocol-sdk";
 import { chain, publicClient } from './zora-config';
 import { getWalletClient } from './zora-config';
-import { formatEther } from 'viem'; // Helper to convert Wei to Ether
+import { formatEther } from 'viem'; 
 
-export async function mintCoin({
+export async function estimateMintingGas({
   contractAddress,
   tokenId,
   artworkURI,
@@ -14,9 +14,11 @@ export async function mintCoin({
   artworkURI: string,
   quantity?: number
 }) {
+  // Get wallet client
   const walletClient = await getWalletClient();
   const [address] = await walletClient.getAddresses();
 
+  // Create parameters for minting (without actually minting)
   const { parameters } = await mint({
     tokenContract: contractAddress,
     mintType: "1155",
@@ -50,9 +52,5 @@ export async function mintCoin({
 
   console.log('Estimated Gas Cost in Ether:', gasCostInEther);
 
-  // Send the mint transaction
-  const txHash = await walletClient.writeContract(parameters);
-
-  console.log('Transaction Hash:', txHash);
-  return { txHash, gasCostInEther };
+  return gasCostInEther;
 }
