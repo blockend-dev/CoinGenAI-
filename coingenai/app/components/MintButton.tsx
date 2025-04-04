@@ -1,6 +1,12 @@
 'use client';
 import { useState } from 'react';
 
+interface MintButtonProps {
+    ticker: string;
+    artwork: string;
+    disabled?: boolean; 
+  }
+
 export function MintButton({ ticker, artwork }: { ticker: string, artwork: string }) {
   const [isMinting, setIsMinting] = useState(false);
   const [error, setError] = useState<string|null>(null);
