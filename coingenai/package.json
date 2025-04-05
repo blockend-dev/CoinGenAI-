@@ -13,6 +13,7 @@
     "@huggingface/inference": "^3.6.2",
     "@neynar/nodejs-sdk": "^2.25.1",
     "@tensorflow/tfjs-node": "^4.22.0",
+    "@wagmi/core": "^2.16.7",
     "@zoralabs/coins-sdk": "^0.0.3",
     "@zoralabs/protocol-sdk": "^0.13.4",
     "firebase": "^11.6.0",
