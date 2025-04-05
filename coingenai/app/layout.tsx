@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { config } from './lib/wagmi'
+import { WagmiProvider } from 'wagmi'
+import NetworkSwitcher from './components/NetworkSwitcher'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +28,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+       <WagmiProvider config={config}>
+          <header className="p-4 border-b">
+            <NetworkSwitcher />
+          </header>
+          {children}
+        </WagmiProvider>
       </body>
     </html>
   );
