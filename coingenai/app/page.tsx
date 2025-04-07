@@ -1,7 +1,8 @@
 'use client';
+import { WalletButton } from './components/WalletButton'
 import { useState, useEffect } from 'react';
 import { useAccount } from 'wagmi';
-import {MintButton} from './components/MintButton';
+import MintButton from './components/MintButton';
 
 type CoinHistory = {
   ticker: string;
@@ -51,6 +52,7 @@ export default function Home() {
         body: JSON.stringify({ prompt })
       });
       
+      console.log(trendsRes)
       if (!trendsRes.ok) throw new Error('Failed to generate ticker');
       const { ticker } = await trendsRes.json();
       setGeneratedTicker(ticker);
@@ -110,6 +112,7 @@ export default function Home() {
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">CoinGenAI</h1>
+          <WalletButton />
           <p className="text-lg text-gray-600">
             {isConnected 
               ? `Connected as ${address?.slice(0, 6)}...${address?.slice(-4)}`
