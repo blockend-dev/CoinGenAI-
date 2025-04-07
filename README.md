@@ -6,7 +6,7 @@ CoinGenAI is an innovative platform that combines AI with blockchain technology 
 
 ## ⚠️ Current Known Issue
 
-**Bug Status**: *Identified - Fix Coming in Next Release*
+**Bug Status**: *Identified - Fix Coming in Next Wave*
 
 We're currently experiencing an issue with dependency conflicts related to `@mapbox/node-pre-gyp` which affects the trend analysis API endpoint. This manifests as:
 
