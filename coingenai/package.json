@@ -21,6 +21,7 @@
     "@zoralabs/protocol-sdk": "^0.13.4",
     "aws-sdk": "^2.1692.0",
     "firebase": "^11.6.0",
+    "framer-motion": "^12.7.4",
     "mock-aws-s3": "^4.0.2",
     "next": "15.2.4",
     "nock": "^14.0.2",

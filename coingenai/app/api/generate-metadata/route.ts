@@ -6,8 +6,8 @@ export const dynamic = 'force-dynamic';
 export async function POST(req: NextRequest) {
   try {
     const { name, description, image, creator } = await req.json();
-    const PINATA_API_KEY = process.env.PINATA_KEY;
-    const PINATA_SECRET = process.env.PINATA_SECRET;
+    const PINATA_API_KEY = process.env.NEXT_PUBLIC_PINATA_KEY;
+    const PINATA_SECRET = process.env.NEXT_PUBLIC_PINATA_SECRET;
 
     if (!name || !description || !image || !creator || !PINATA_API_KEY || !PINATA_SECRET) {
       return NextResponse.json({ error: 'Missing fields or API keys' }, { status: 400 });
