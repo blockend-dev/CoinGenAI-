@@ -1,96 +1,100 @@
-# CoinGenAI - AI-Powered Zora Coin Generator
 
-## 🚀 Overview
+# CoinGenAI 🚀
 
-CoinGenAI is an innovative platform that combines AI with blockchain technology to help creators generate and mint viral Zora coins with a single click. Our system analyzes trends, generates unique coin artwork, and handles on-chain deployment automatically.
+**CoinGenAI** is a powerful platform that allows users to generate and deploy meme coins powered by Farcaster trends, Hugging Face models, and blockchain technology using the Zora Coin SDK. The platform enables users to:
+- Fetch trending Farcaster posts
+- Generate meme coin ideas based on those trends
+- Create custom artwork and metadata for the coin
+- Deploy the generated coins to the Zora blockchain
 
-## ⚠️ Current Known Issue
+## Features 🌟
 
-**Bug Status**: *Identified - Fix Coming in Next Wave*
+- **Coin Generation**: Automatically generates meme coin names based on trending topics.
+- **Artwork Generation**: Utilizes Hugging Face models to generate coin artwork.
+- **Metadata Creation**: Generates metadata and uploads it to IPFS via Pinata.
+- **Seamless Wallet Integration**: Uses **RainbowKit** for easy wallet connection.
+- **Deployment**: Deploy coins to the **Zora blockchain** with a simple click.
 
-We're currently experiencing an issue with dependency conflicts related to `@mapbox/node-pre-gyp` which affects the trend analysis API endpoint. This manifests as:
+## Tech Stack 🔧
 
-```
-Module not found errors for aws-sdk, mock-aws-s3, and nock
-HTML module type errors in build process
-```
+- **Frontend**: Next.js, React, Tailwind CSS
+- **Blockchain**: Zora Coin SDK, Wagmi, Viem
+- **AI**: Hugging Face (Stable Diffusion, Mixtral-8x7B), Neynar API
+- **IPFS**: Pinata
+- **Wallet**: RainbowKit, Wagmi
+- **Backend**: API routes in Next.js
 
-**Our Solution**:  
-We've implemented temporary workarounds and will be deploying a complete fix in the next development sprint that will:
+## Demo 🎥
 
-1. Replace problematic dependencies with modern alternatives
-2. Implement proper type declarations
-3. Optimize the build pipeline
+Check the live site [here](https://coin-gen-ai-rvym.vercel.app/).
 
-## ✨ Features
+## Installation 💻
 
-- **AI-Powered Coin Generation**
-  - Automatic trend analysis
-  - Unique artwork generation
-  - Smart ticker suggestions
-
-- **Blockchain Integration**
-  - One-click minting on Zora Protocol
-  - Multi-chain support (Base + Base Sepolia)
-  - Royalty configuration
-
-- **User Experience**
-  - Wallet connection (MetaMask, Coinbase, WalletConnect)
-  - Transaction history
-  - Real-time market data
-
-## 🛠️ Installation
+Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/blockend-dev/CoinGenAI-.git
+git clone https://github.com/blockend-dev/CoinGenAI-
 cd coingenai
 npm install
 ```
 
-## 🔧 Configuration
+### Environment Variables ⚡
 
-1. Create `.env.local` file:
+Make sure to create a `.env.local` file with the following environment variables:
+
 ```env
-NEXT_PUBLIC_ZORA_CONTRACT=0x...
-NEYNAR_API_KEY=your_key
-OPENAI_API_KEY=your_key
+NEXT_PUBLIC_NEYNAR_API_KEY=your-neynar-api-key
+NEXT_PUBLIC_HUGGINGFACE_API_KEY=your-huggingface-api-key
+NEXT_PUBLIC_PINATA_KEY=your-pinata-api-key
+NEXT_PUBLIC_PINATA_SECRET=your-pinata-api-secret
 ```
 
-## 🚴‍♂️ Running the App
+- **NEYNAR_API_KEY**: Required for accessing Farcaster trends via the Neynar API.
+- **HUGGINGFACE_API_KEY**: Needed to interact with Hugging Face models for generating coin artwork.
+- **PINATA_KEY and PINATA_SECRET**: Used for uploading metadata to IPFS using Pinata.
+
+### Running the Development Server 🚀
+
+To run the project locally in development mode:
 
 ```bash
 npm run dev
 ```
 
-## 📂 Project Structure
+This will start the app at `http://localhost:3000`.
 
-```
-/coingenai
-├── app/            # Next.js app router
-├── components/     # React components
-├── lib/            # Blockchain/AI logic
-├── types/          # TypeScript declarations
-└── public/         # Static assets
-```
+## Usage 🚀
+
+1. **Connect your Wallet**: Use the "Connect Wallet" button (powered by RainbowKit) to link your wallet.
+2. **Generate Coin**: Click on the "Generate Coin" button to analyze Farcaster trends and generate a coin idea.
+3. **Preview Coin**: Once the coin idea is generated, you'll see the coin's name, symbol, description, and artwork.
+4. **Deploy Coin**: Once you're happy with the generated coin, you can deploy it to the Zora blockchain with a single click.
+
+## Features Walkthrough 📑
+
+### Step-by-Step UI (Progress Wizard)
+CoinGenAI offers a seamless, guided process for first-time users with clear steps and progress indicators.
+
+### Onboarding Modal
+For first-time users, CoinGenAI offers an onboarding modal with tips and a preview to help guide you through the process.
+
+### Responsive UI
+CoinGenAI is fully responsive and works on mobile, tablet, and desktop devices.
 
 
+## License 📄
 
-## 📅 Roadmap
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### Next Release (Fixes Coming)
-- [ ] Complete dependency overhaul
-- [ ] Enhanced error handling
-- [ ] Gas optimization
+## Acknowledgements 🙏
 
-### Future Features
-- [ ] Multi-wallet support
-- [ ] Coin analytics dashboard
-- [ ] Social sharing integration
-
-## 📜 License
-
-MIT
+- **Zora** for their amazing Coin SDK.
+- **RainbowKit** for wallet integration.
+- **Hugging Face** for powerful AI models.
+- **Pinata** for seamless IPFS integration.
+- **Farcaster** for creating a platform that drives the trends.
 
 ---
 
-**Note**: The current dependency issues do not affect core functionality. Minting and generation features remain fully operational. Our team is working diligently to resolve these build issues completely in the upcoming release.
+Feel free to reach out with any questions or ideas, and let's create some epic meme coins! 🎉
+```
