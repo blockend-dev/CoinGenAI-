@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useConnectModal } from '@rainbow-me/rainbowkit';
 import { useAccount, useWriteContract } from "wagmi";
 import { createCoinCall } from "@zoralabs/coins-sdk";
 import { Address } from "viem";
@@ -8,47 +9,67 @@ import { base } from "viem/chains";
 import { toast } from "react-toastify";
 
 export default function CoinGenAI() {
-  const { address } = useAccount();
+  const { address,isConnected } = useAccount();
+  const { openConnectModal } = useConnectModal();
   const [generating, setGenerating] = useState(false);
   const [coin, setCoin] = useState<any>(null);
   const [status, setStatus] = useState("idle");
   const { writeContract } = useWriteContract();
 
   const generateCoin = async () => {
+    if (!isConnected) {
+      openConnectModal?.();
+      return;
+    }
+  
     setGenerating(true);
     toast.info("Analyzing Farcaster trends...");
+  
     try {
       const res = await fetch("/api/generate-coin-idea");
       const idea = await res.json();
-      console.log('hey',idea)
+  
       const coinName = idea.coinIdeas[0];
-      const symbol = coinName.replace(/\s+/g, "").slice(0, 6).toUpperCase();
-
+      const description = idea.summary;
+      const imageURI = idea.image
+      
+      console.log(JSON.stringify({
+        name: coinName,
+        description,
+        image: imageURI,
+        creator: address,
+      }))
       toast.info("Generating coin artwork & metadata...");
+  
       const metaRes = await fetch("/api/generate-metadata", {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({
           name: coinName,
-          symbol,
-          description: idea.summary,
+          description,
+          image: imageURI,
+          creator: address,
         }),
       });
-
+  
       const meta = await metaRes.json();
+  
       setCoin({
         name: coinName,
-        symbol,
-        description: idea.summary,
+        symbol: coinName.replace(/\s+/g, "").slice(0, 6).toUpperCase(),
+        description,
         image: meta.image,
-        uri: meta.uri,
+        uri: meta.metadataUrl,
       });
+  
       toast.success("Coin ready to deploy!");
     } catch (err) {
+      console.error("Error:", err);
       toast.error("Error generating coin. Try again.");
     } finally {
       setGenerating(false);
     }
   };
+  
 
   const deployCoin = async () => {
     if (!address || !coin) return;

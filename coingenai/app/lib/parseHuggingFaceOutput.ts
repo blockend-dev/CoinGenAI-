@@ -1,4 +1,4 @@
-function parseHuggingFaceOutput(raw: string) {
+export function parseHuggingFaceOutput(raw: string) {
   const extractArray = (label: string) => {
     const match = raw.match(new RegExp(`${label}:\\s*\\[(.*?)\\]`, 's'));
     if (!match) return [];
