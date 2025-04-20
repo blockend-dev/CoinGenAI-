@@ -24,6 +24,7 @@
     "next": "15.2.4",
     "nock": "^14.0.2",
     "node-telegram-bot-api": "^0.66.0",
+    "openai": "^4.95.1",
     "raw-loader": "^4.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
