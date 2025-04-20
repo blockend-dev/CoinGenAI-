@@ -4,24 +4,24 @@ import { injected, coinbaseWallet, walletConnect } from 'wagmi/connectors'
 
 // Type-safe configuration object
 export const config = createConfig({
-  chains: [base, baseSepolia] as const, // Important: `as const` for tuple type
+  chains: [base, baseSepolia] as const, 
   transports: {
-    [base.id]: http(), // Uses default RPC
+    [base.id]: http(), 
     [baseSepolia.id]: http()
   },
   connectors: [
     injected(),
     coinbaseWallet({
       appName: 'CoinGenAI',
-      appLogoUrl: 'https://yourapp.com/logo.png'
+      appLogoUrl: 'https://coingenai.com/logo.png'
     }),
     walletConnect({
       projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
       metadata: {
         name: 'CoinGenAI',
         description: 'AI-powered Zora coin generator',
-        url: 'https://yourapp.com',
-        icons: ['https://yourapp.com/icon.png']
+        url: 'https://google.com',
+        icons: ['https://google.com/icon.png']
       }
     })
   ]
